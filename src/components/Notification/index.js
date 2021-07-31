@@ -1,1 +1,1 @@
-export { default } from './Notification.connector';
+export { default } from './Notification';

@@ -1,1 +1,1 @@
-export { default } from './Navigation.connect';
+export { default } from './Navigation';

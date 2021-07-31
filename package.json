@@ -33,7 +33,7 @@
     "deployG": "gh-pages -d build",
     "prepare": "husky install",
     "presave": "git add .",
-    "save": "git commit -m 'finished'",
+    "save": "git commit -m 'fix'",
     "postsave": "git push"
   },
   "eslintConfig": {

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Box, Button, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelectors, authOperations } from 'redux/auth';
 
 const useStyles = makeStyles(theme => ({
   box: {
@@ -10,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     gridGap: '10px',
     justifyContent: 'center',
     width: 'auto',
+    
   },
   controls: {
     display: 'grid',
@@ -24,8 +28,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const UserMenu = ({ name, email, logoutHandler }) => {
+export default function UserMenu() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const name = useSelector(authSelectors.getUserName);
+  const email = useSelector(authSelectors.getUserEmail);
+
+  const logOutBtnClickHandler = useCallback(
+    () => dispatch(authOperations.logOut()),
+    [dispatch],
+  );
+
   return (
     <Box component="div" className={classes.box}>
       <Avatar src={''} className={classes.avatar} alt="Avatar" />
@@ -33,12 +47,10 @@ const UserMenu = ({ name, email, logoutHandler }) => {
         <span className={classes.name}>
           {email} ({name})
         </span>
-        <Button color="primary" onClick={logoutHandler}>
+        <Button color="primary" onClick={logOutBtnClickHandler}>
           Sign Out
         </Button>
       </Box>
     </Box>
   );
-};
-
-export default UserMenu;
+}

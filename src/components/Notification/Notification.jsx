@@ -2,7 +2,6 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 
-import styles from 'components/Notification/Notification.module.css';
 
 const place = document.querySelector('#notify');
 
@@ -15,7 +14,7 @@ const Notification = ({ message, isNotify }) => {
       nodeRef={notifyRef}
       unmountOnExit
     >
-      <div className={styles.Notification} ref={notifyRef}>
+      <div ref={notifyRef}>
         <p>{message}</p>
       </div>
     </CSSTransition>,

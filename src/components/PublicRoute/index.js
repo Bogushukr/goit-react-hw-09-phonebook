@@ -1,1 +1,1 @@
-export { default } from './PublicRoute.connector';
+export { default } from './PublicRoute';

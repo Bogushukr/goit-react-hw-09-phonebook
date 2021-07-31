@@ -1,1 +1,1 @@
-export { default } from './HomeView.connect';
+export { default } from './HomeView';

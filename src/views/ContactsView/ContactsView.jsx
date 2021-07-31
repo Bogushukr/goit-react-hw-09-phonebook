@@ -1,42 +1,48 @@
 import { CSSTransition } from 'react-transition-group';
-import React, { Component } from 'react';
-
-import ContactForm from 'components/ContactForm/ContactForm.connector';
-import Notification from 'components/Notification';
+import React, { useEffect } from 'react';
+import { Box } from '@material-ui/core';
+import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
+import { contactsOperations } from 'redux/contacts';
 
-import styles from './ContactsView.module.css';
 
-class ContactsView extends Component {
-  componentDidMount() {
-    const { contactsFetch } = this.props;
+import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
 
-    contactsFetch();
-  }
+const useStyles = makeStyles({
+  container: {
+    display: 'block',
+    maxWidth: '550px',
+    margin: 'auto',
+  },
+});
 
-  render() {
-    const contactListRef = React.createRef();
-    return (
-      <>
-        <div className={styles.ContactsView}>
-          <ContactForm />
-          <Filter />
-          <CSSTransition
-            in={true}
-            appear={true}
-            timeout={250}
-            nodeRef={contactListRef}
-            unmountOnExit
-          >
-            <ContactList contactListRef={contactListRef} />
-          </CSSTransition>
-        </div>
+export default function ContactsView() {
+  const dispatch = useDispatch();
+  const classes = useStyles();
 
-        <Notification />
-      </>
-    );
-  }
+  useEffect(() => {
+    dispatch(contactsOperations.fetchListOfContacts());
+  }, [dispatch]);
+
+  const contactListRef = React.createRef();
+
+  return (
+    <>
+      <Box className={classes.container}>
+        <ContactForm />
+        <Filter />
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={250}
+          nodeRef={contactListRef}
+          unmountOnExit
+        >
+          <ContactList contactListRef={contactListRef} />
+        </CSSTransition>
+      </Box>
+    </>
+  );
 }
-
-export default ContactsView;

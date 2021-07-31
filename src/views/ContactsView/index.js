@@ -1,1 +1,1 @@
-export { default } from './ContactsView.connect';
+export { default } from './ContactsView';

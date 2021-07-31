@@ -1,1 +1,1 @@
-export { default } from './UserMenu.connector';
+export { default } from './UserMenu';

@@ -1,1 +1,1 @@
-export { default } from './Filter.connector';
+export { default } from './Filter';

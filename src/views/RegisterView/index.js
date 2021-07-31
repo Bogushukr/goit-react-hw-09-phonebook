@@ -1,1 +1,1 @@
-export { default } from './RegisterView.connect';
+export { default } from './RegisterView';

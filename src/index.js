@@ -5,6 +5,7 @@ import 'modern-normalize/modern-normalize.css';
 import 'common.css';
 
 import ReduxStoragePersist from 'redux/ReduxStoragePersist';
+// import ReduxStorage from 'redux/ReduxStorage';
 import Application from 'Application';
 
 ReactDOM.render(

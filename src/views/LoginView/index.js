@@ -1,1 +1,1 @@
-export { default } from './LoginView.connect';
+export { default } from './LoginView';

@@ -1,10 +1,13 @@
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { List } from '@material-ui/core';
 
 import ContactItem from 'components/ContactListItem';
 
+
+import { contactsOperations, contactsSelectors } from 'redux/contacts';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -13,6 +16,7 @@ const useStyles = makeStyles({
     marginTop: '10px',
     boxShadow:
       '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
+    borderRadius: '20px',
   },
   list: {
     display: 'grid',
@@ -21,8 +25,16 @@ const useStyles = makeStyles({
   },
 });
 
-const ContactList = ({ contacts, contactListRef, onDelete }) => {
+export default function ContactList({ contactListRef }) {
+  const dispatch = useDispatch();
   const classes = useStyles();
+
+  const contacts = useSelector(contactsSelectors.getFilteredContactList);
+
+  const onDelete = useCallback(
+    id => () => dispatch(contactsOperations.deleteContact(id)),
+    [dispatch],
+  );
 
   if (!contacts.length) {
     return null;
@@ -44,7 +56,7 @@ const ContactList = ({ contacts, contactListRef, onDelete }) => {
                 name={name}
                 number={number}
                 cssRef={contactItemRef}
-                onDelete={() => onDelete(id)}
+                onDelete={onDelete(id)}
               />
             </CSSTransition>
           );
@@ -52,18 +64,4 @@ const ContactList = ({ contacts, contactListRef, onDelete }) => {
       </TransitionGroup>
     </section>
   );
-};
-
-ContactList.defaultProps = { contacts: [] };
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-};
-
-export default ContactList;
+}

@@ -1,1 +1,1 @@
-export { default } from './AppBar.connect';
+export { default } from './AppBar';

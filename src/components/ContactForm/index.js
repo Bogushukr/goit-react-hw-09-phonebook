@@ -1,1 +1,1 @@
-export { default } from './ContactForm.connector';
+export { default } from './ContactForm';

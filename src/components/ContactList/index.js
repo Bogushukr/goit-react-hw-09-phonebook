@@ -1,1 +1,1 @@
-export { default } from './ContactList.connector';
+export { default } from './ContactList';

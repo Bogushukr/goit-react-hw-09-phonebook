@@ -15,7 +15,8 @@ const deleteContactError = createAction(types.DELETE_ERROR);
 
 const setContactsFilter = createAction(types.FILTER);
 
-const showExistNotify = createAction(types.NOTIFY_EXIST);
+const showNotify = createAction(types.NOTIFY_SHOW);
+const hideNotify = createAction(types.NOTIFY_HIDE);
 
 const contactsActions = {
   fetchListOfContactsRequest,
@@ -28,6 +29,7 @@ const contactsActions = {
   deleteContactSuccess,
   deleteContactError,
   setContactsFilter,
-  showExistNotify,
+  showNotify,
+  hideNotify,
 };
 export default contactsActions;

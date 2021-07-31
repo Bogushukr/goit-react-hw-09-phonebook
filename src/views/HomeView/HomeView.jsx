@@ -1,12 +1,21 @@
+import React from 'react';
 import { Container, Box } from '@material-ui/core';
+import HomeTwoTone from '@material-ui/icons/HomeTwoTone';
 import { makeStyles } from '@material-ui/core/styles';
+
 const useStyles = makeStyles({
   container: {
     boxShadow:
       '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
+    borderRadius: '20px',
     padding: '10px 20px',
     width: '100%',
     marginTop: '100px',
+        backgroundColor: '#3F51B5',
+    '&:hover': {
+      backgroundColor: 'white',
+      
+    },
   },
   home: {
     alignSelf: 'center',
@@ -17,8 +26,14 @@ const useStyles = makeStyles({
   text: {
     fontFamily: 'American Typewriter',
     color: '#3F51B5',
+        color: 'white',
+    '&:hover': {
+      color: '#3F51B5',
+      TransformStream: 'styles',
+    },
   },
 });
+
 const HomeView = () => {
   const classes = useStyles();
 
